@@ -22,6 +22,7 @@ jobs:
   linux:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         target: [x86_64, x86, aarch64, armv7, s390x, ppc64le]
     steps:
