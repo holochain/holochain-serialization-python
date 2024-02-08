@@ -3,6 +3,8 @@
 #
 #    maturin generate-ci github
 #
+# Note that some of the platforms that are included by default aren't supported for the Holochain dependencies we're pulling in. Those have been
+# commented out and will need to be removed again if you use the automated update mechanism.
 name: CI
 
 on:
