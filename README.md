@@ -31,7 +31,7 @@ You can compile this Python module and the Rust code in one step with:
 maturin develop
 ```
 
-This will end up placing the module in your `.venv`'s site_packages (somethign like `.venv/lib/python3.11/site-packages/holochain_serialization`). You can then run the test script to verify that you haven't broken anything with:
+This will end up placing the module in your `.venv`'s site_packages (something like `.venv/lib/python3.11/site-packages/holochain_serialization`). You can then run the test script to verify that you haven't broken anything with:
 
 ```bash
 python test.py
