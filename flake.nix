@@ -2,26 +2,19 @@
     description = "Flake for Holochain library development";
 
     inputs = {
-        versions.url = "github:holochain/holochain?dir=versions/0_2";
-
-        versions.inputs.holochain.url = "github:holochain/holochain/holochain-0.2.5";
-
-        holochain = {
-            url = "github:holochain/holochain";
-            inputs.versions.follows = "versions";
-        };
-
-        nixpkgs.follows = "holochain/nixpkgs";
+        holonix.url = "github:holochain/holonix?ref=main-0.6";
+        nixpkgs.follows = "holonix/nixpkgs";
+        flake-parts.follows = "holonix/flake-parts";
     };
 
-    outputs = inputs @ { ... }:
-    inputs.holochain.inputs.flake-parts.lib.mkFlake { inherit inputs; }
+    outputs = inputs @ { flake-parts, holonix, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; }
     {
-        systems = builtins.attrNames inputs.holochain.devShells;
+        systems = builtins.attrNames holonix.devShells;
         perSystem = { config, pkgs, system, ... }: {
             devShells.default = pkgs.mkShell {
                 inputsFrom = [
-                    inputs.holochain.devShells.${system}.holonix
+                    holonix.devShells.${system}.default
                 ];
                 packages = [
                     (pkgs.python3.withPackages (python-pkgs: [

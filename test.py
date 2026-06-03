@@ -12,12 +12,12 @@ if __name__ == "__main__":
     
     zome_call_unsigned = holochain_serialization.ZomeCallUnsignedPy(provenance, dna_hash, agent_pub_key, zome_name, fn_name, payload, nonce, expires_at)
     data = holochain_serialization.get_data_to_sign(zome_call_unsigned)
-    assert data == [16, 212, 254, 166, 94, 173, 226, 249, 219, 188, 104, 154, 154, 224, 156, 247, 195, 147, 157, 55, 16, 132, 51, 102, 178, 72, 130, 57, 125, 214, 200, 27]
+    assert data == bytes([239, 242, 21, 207, 225, 142, 252, 4, 173, 215, 48, 207, 89, 56, 92, 154, 189, 144, 184, 122, 247, 4, 123, 250, 167, 5, 75, 90, 193, 8, 118, 79, 132, 141, 111, 224, 95, 195, 191, 72, 198, 154, 80, 25, 124, 22, 111, 20, 217, 179, 236, 78, 185, 127, 128, 72, 63, 1, 234, 52, 0, 91, 166, 225]), f"got {list(data)}"
 
     cap_secret = [0] * 64
     zome_call_unsigned = holochain_serialization.ZomeCallUnsignedPy(provenance, dna_hash, agent_pub_key, zome_name, fn_name, payload, nonce, expires_at, cap_secret=cap_secret)
     data = holochain_serialization.get_data_to_sign(zome_call_unsigned)
-    assert data == [19, 82, 166, 180, 255, 212, 169, 179, 198, 226, 103, 225, 97, 67, 249, 4, 168, 8, 216, 29, 244, 79, 142, 141, 126, 57, 135, 6, 73, 75, 102, 250], f"got {data}"
+    assert data == bytes([167, 218, 30, 74, 112, 49, 99, 22, 176, 72, 224, 240, 60, 199, 93, 137, 15, 220, 162, 254, 73, 117, 174, 56, 181, 254, 197, 16, 103, 111, 109, 92, 212, 176, 122, 251, 49, 238, 1, 38, 250, 191, 221, 139, 12, 40, 114, 30, 147, 254, 131, 94, 23, 226, 112, 236, 115, 124, 223, 204, 102, 147, 93, 210]), f"got {list(data)}"
 
     print("Passed!")
 
